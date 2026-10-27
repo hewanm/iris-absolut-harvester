@@ -1,0 +1,115 @@
+# Domain filter for IRIS-SIG-49:
+#   "German institutional capital trends, Solvency II / BaFin quotas, and real asset allocations"
+#
+# Patterns are Python regular expressions, matched case-insensitively against
+# title + feed summary + feed categories. German is heavily compounding, so most
+# patterns are word *prefixes* (\bimmobilien\w* also matches "Immobilienquote").
+# Each distinct matched term counts once; title hits are weighted higher.
+
+title_weight: 1.5          # multiplier when a topic is matched in the title
+max_terms_per_topic: 3     # cap so one keyword-stuffed article cannot dominate
+
+keep_rule:
+  min_score: 6.0          # tuned on fixtures: weak single mentions score 3-5, real signals 10+
+  # at least one of the three objective topics must be present
+  required_any: [institutional_investors, regulation_quotas, real_assets]
+  # objective is German institutional capital; CH/AT-only items are filtered out
+  allowed_geo_scopes: [DE, DACH, UNKNOWN]
+
+topics:
+  institutional_investors:
+    weight: 2.0
+    patterns:
+      - '\bversicherer\w*'
+      - '\b(?:lebens|kranken|rück|erst)?versicherung(?:en|sgruppe\w*|skonzern\w*)?\b'
+      - '\bpensionskass\w*'
+      - '\bpensionsfonds\w*'
+      - '\bversorgungswerk\w*'
+      - '\b(?:zusatz)?versorgungskass\w*'
+      - '\bversorgungseinrichtung\w*'
+      - '\bversorgungskammer\w*'
+      - '\bzvk\b'
+      - '\bbav\b'
+      - '\bbetriebliche\w* altersversorgung'
+      - '\bsparkass\w*'
+      - '\b(?:genossenschafts|volks|raiffeisen)bank\w*'
+      - '\bstiftung\w*'
+      - '\bkirchlich\w* (?:investor|anleger)\w*'
+      - '\binstitutionell\w* (?:investor|anleger|kapital)\w*'
+      - '\binstitutional investor\w*'
+      - '\bspezialfonds\w*'
+      - '\bmasterfonds\w*'
+      - '\bkapitalverwaltungsgesellschaft\w*|\bkvg\b'
+
+  allocation_trend:
+    weight: 1.5
+    patterns:
+      - '\basset[\s-]*allo[ck]ation\w*'
+      - '\ballokation\w*'
+      - '\bumschicht\w*'
+      - '\baufstock\w*'
+      - '\b(?:neu|kapital)anlage\w*'
+      - '\banlagestrategie\w*'
+      - '\bmandat\w*'
+      - '\brebalancing\w*'
+      - '\bportfolio\w*'
+      - '\bzielquote\w*'
+
+  regulation_quotas:
+    weight: 2.0
+    patterns:
+      - '\bsolvency[\s-]*(?:ii|2)\b'
+      - '\bscr\b'
+      - '\bsolvenzkapital\w*'
+      - '\bsolvenzquote\w*'
+      - '\bstandardformel\w*'
+      - '\beigenmittel\w*'
+      - '\bbafin\b'
+      - '\banlageverordnung\w*|\banlv\b'
+      - '\bkapitalanlagerundschreiben\w*'
+      - '\bsicherungsvermögen\w*'
+      - '\bvag\b'
+      - '\bkagb\b'
+      - '\beiopa\b'
+      - '\b(?:immobilien|risikokapital|infrastruktur|aktien|mischungs|streuungs|alternative\w*)quote\w*'
+      - '\bquoten?\b'
+      - '\baufsicht\w*'
+
+  real_assets:
+    weight: 2.0
+    patterns:
+      - '\bimmobilie\w*'
+      - '\breal[\s-]*estate\b'
+      - '\binfrastruktur\w*'
+      - '\binfrastructure\b'
+      - '\bprivate[\s-]*equity\b'
+      - '\bprivate[\s-]*debt\b'
+      - '\bprivate[\s-]*markets?\b'
+      - '\breal[\s-]*assets?\b'
+      - '\bsachwert\w*'
+      - '\berneuerbar\w*'
+      - '\bwind(?:park|energie|kraft)\w*'
+      - '\bsolarpark\w*|\bphotovoltaik\w*'
+      - '\brechenzentr\w*'
+      - '\bglasfaser\w*'
+      - '\b(?:agrar|forst|wald)(?:flächen|invest)\w*'
+
+geo_scope:
+  DE:
+    - '\bdeutschland\b'
+    - '\bgerman(?:y)?\b'
+    - '\bdeutsch(?:e|en|er|es|em)\b'
+    - '\bbundesweit\w*'
+    - '\bbafin\b'
+    - '\banlageverordnung\w*|\banlv\b'
+    - '\bvag\b'
+    - '\bbav\b'
+  CH:
+    - '\bschweiz\w*'
+    - '\bfinma\b'
+    - '\bzürich\w*'
+    - '\bgenf\w*'
+  AT:
+    - '\bösterreich\w*'
+    - '\bfma\b'
+    - '\bwien\w*'

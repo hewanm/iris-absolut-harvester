@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SYNTHETIC TEST FIXTURE: Atom 1.0 variant (feedparser handles RSS and Atom identically). Fictional content. -->
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="de">
+  <title>SYNTHETIC FIXTURE – Atom</title>
+  <id>urn:uuid:7a1f7c1e-0000-4000-8000-000000000001</id>
+  <updated>2026-10-26T09:00:00Z</updated>
+  <entry>
+    <title>Versicherungsgruppe aus Hannover erhöht Private-Debt-Allokation</title>
+    <id>tag:absolut-report.example,2026:900201</id>
+    <link href="https://www.absolut-report.example/2026/10/hannover-private-debt/"/>
+    <published>2026-10-26T07:00:00+01:00</published>
+    <updated>2026-10-26T07:30:00+01:00</updated>
+    <author><name>Redaktion Test</name></author>
+    <category term="Private Markets"/>
+    <summary>Die fiktive Versicherungsgruppe stockt Private Debt und Infrastruktur unter Solvency II auf.</summary>
+  </entry>
+  <entry>
+    <title>Pensionsfonds ohne Datum</title>
+    <id>tag:absolut-report.example,2026:900202</id>
+    <link href="https://www.absolut-report.example/2026/10/pensionsfonds-ohne-datum/"/>
+    <updated>2026-10-25T10:00:00Z</updated>
+    <summary>Ein fiktiver Pensionsfonds aus Leipzig erhöht seine Immobilienquote.</summary>
+  </entry>
+</feed>

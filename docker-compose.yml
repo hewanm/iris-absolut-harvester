@@ -1,0 +1,32 @@
+# Local, credential-free demo stack. Values come from .env (see .env.example).
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-iris}
+      POSTGRES_USER: ${POSTGRES_USER:-iris}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-iris} -d ${POSTGRES_DB:-iris}"]
+      interval: 3s
+      retries: 20
+    volumes:
+      - iris_pgdata:/var/lib/postgresql/data
+
+  harvester:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-iris}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-iris}
+      IRIS_CONTACT: ${IRIS_CONTACT:-}
+    # default: demonstrable without network or production access
+    command: ["run", "--fixture", "tests/fixtures/feed_page1.xml", "--fixture", "tests/fixtures/feed_page2.xml",
+              "--export-dir", "out"]
+    profiles: ["app"]
+
+volumes:
+  iris_pgdata:

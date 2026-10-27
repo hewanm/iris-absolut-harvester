@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SYNTHETIC TEST FIXTURE: page 2 (?paged=2). Overlaps page 1 by one item (guid 900101). Fictional content. -->
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<channel>
+  <title>SYNTHETIC FIXTURE – absolut|report (test)</title>
+  <link>https://www.absolut-report.example</link>
+  <description>Fictional items for automated tests</description>
+  <language>de-DE</language>
+  <item>
+    <title>Pensionskasse in Köln erhöht Immobilienquote auf 18 Prozent</title>
+    <link>https://www.absolut-report.example/2026/10/pensionskasse-koeln-immobilienquote/</link>
+    <pubDate>Mon, 26 Oct 2026 08:15:00 +0000</pubDate>
+    <category><![CDATA[Immobilien]]></category>
+    <category><![CDATA[Asset Allocation]]></category>
+    <guid isPermaLink="false">https://www.absolut-report.example/?p=900101</guid>
+    <description><![CDATA[<p>Die fiktive Pensionskasse Rheinland Muster hebt ihre Immobilienquote im Rahmen der Anlageverordnung auf 18 Prozent an und stockt ihre Spezialfonds-Mandate für Wohnimmobilien auf. [&#8230;]</p>]]></description>
+  </item>
+  <item>
+    <title>Zahnärzteversorgung aus Stuttgart baut Infrastruktur-Portfolio aus</title>
+    <link>https://www.absolut-report.example/2026/10/zahnaerzteversorgung-stuttgart-infrastruktur/</link>
+    <pubDate>Fri, 16 Oct 2026 08:00:00 +0000</pubDate>
+    <guid isPermaLink="false">https://www.absolut-report.example/?p=900110</guid>
+    <description><![CDATA[Das fiktive Versorgungswerk erhöht seine Infrastrukturquote und vergibt ein neues Mandat für Glasfaser- und Rechenzentrumsprojekte.]]></description>
+  </item>
+  <item>
+    <title>Frankfurt (Oder): Kommunale Pensionskasse prüft Windpark-Beteiligung</title>
+    <link>https://www.absolut-report.example/2026/10/frankfurt-oder-pensionskasse-windpark/</link>
+    <pubDate>Thu, 15 Oct 2026 13:20:00 +0000</pubDate>
+    <guid isPermaLink="false">https://www.absolut-report.example/?p=900111</guid>
+    <description><![CDATA[Die fiktive Kasse will im Rahmen der Anlageverordnung erstmals direkt in erneuerbare Energien investieren.]]></description>
+  </item>
+</channel>
+</rss>

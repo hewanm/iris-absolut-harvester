@@ -1,0 +1,96 @@
+1. Duplicate source identifiers (expect 0 rows)
+ source_system | source_record_id | count 
+---------------+------------------+-------
+(0 rows)
+
+2. Same canonical URL under different identifiers (expect 0 rows; flagged duplicate_url_different_guid)
+ source_url_canonical | ids 
+----------------------+-----
+(0 rows)
+
+3. Geometry problems: wrong SRID, invalid, or outside Germany (expect 0)
+ bad_geometries 
+----------------
+              0
+(1 row)
+
+4. Geometry / status mismatch (expect 0)
+ mismatches 
+------------
+          0
+(1 row)
+
+5. Resolved points back-projected to WGS84 (spot check)
+   location_text   | e_25832  |  n_25832  |   lon    |   lat    | geo_method | geo_confidence 
+-------------------+----------+-----------+----------+----------+------------+----------------
+ Berlin            | 798812.8 | 5827999.9 | 13.40500 | 52.52000 | place_name |           0.90
+ Dortmund          | 393506.8 | 5708058.2 |  7.46530 | 51.51360 | place_name |           0.90
+ Frankfurt (Oder)  | 877947.2 | 5814158.9 | 14.55060 | 52.34710 | place_name |           0.90
+ Frankfurt am Main | 477269.5 | 5551009.6 |  8.68210 | 50.11090 | place_name |           0.80
+ Köln              | 356689.1 | 5644855.7 |  6.96030 | 50.93750 | place_name |           0.90
+ Stuttgart         | 513437.7 | 5402549.2 |  9.18290 | 48.77580 | place_name |           0.90
+(6 rows)
+
+6. Missing / suspicious fields (visible, not silently dropped)
+ missing_pubdate | future_pubdate | missing_summary | unknown_language | rows_with_flags | total 
+-----------------+----------------+-----------------+------------------+-----------------+-------
+               1 |              0 |               0 |                0 |               5 |    10
+(1 row)
+
+7. Quality flag distribution
+         flag          | count 
+-----------------------+-------
+ ambiguous_location    |     1
+ guid_missing_used_url |     1
+ location_assumption   |     1
+ missing_pubdate       |     1
+ region_only           |     1
+(5 rows)
+
+8. Geographic resolution outcome
+ geo_status  | geo_method | count 
+-------------+------------+-------
+ resolved    | place_name |     6
+ not_found   | none       |     2
+ ambiguous   | multiple   |     1
+ region_only | region     |     1
+(4 rows)
+
+9. Ambiguous / unresolved locations to review
+               source_record_id               |                                      title                                       | geo_status  |  location_text   |                                                                                             location_candidates                                                                                              
+----------------------------------------------+----------------------------------------------------------------------------------+-------------+------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ https://www.absolut-report.example/?p=900103 | Versorgungswerk aus Münster und Stiftung aus Hamburg starten Private-Debt-Mandat | ambiguous   | Hamburg; Münster | [{"kind": "city", "name": "Hamburg", "method": "place_name", "matched": "Hamburg", "confidence": 0.9}, {"kind": "city", "name": "Münster", "method": "place_name", "matched": "Münster", "confidence": 0.9}]
+ https://www.absolut-report.example/?p=900106 | Bayerische Sparkassen bündeln Infrastruktur-Spezialfonds                         | region_only | Bayern           | [{"kind": "state", "name": "Bayern", "method": "region", "matched": "Bayerische", "assumption": "state-level only: never converted to a point", "confidence": 0.4}]
+(2 rows)
+
+10. Domain filter check: every row carries an objective topic and an allowed geo scope (expect 0)
+ off_objective 
+---------------
+             0
+(1 row)
+
+11. Topic distribution
+          topic          | count 
+-------------------------+-------
+ institutional_investors |    10
+ real_assets             |    10
+ regulation_quotas       |     6
+ allocation_trend        |     6
+(4 rows)
+
+12. Traceability: every row links to existing runs (expect 0)
+ orphan_rows 
+-------------
+           0
+(1 row)
+
+13. Run history
+                run_id                |  mode   |  status   |          started_at           |    duration     | seen | inserted | updated | unchanged | errors 
+--------------------------------------+---------+-----------+-------------------------------+-----------------+------+----------+---------+-----------+--------
+ df4697ad-d375-487a-9266-f4551d7162e3 | fixture | partial   | 2026-10-27 14:02:05.610203+01 | 00:00:00.040919 | 15   | 0        | 1       | 9         |      1
+ 0362f763-dd53-41da-9df0-33a4e81dc022 | fixture | succeeded | 2026-10-27 14:02:05.231848+01 | 00:00:00.00493  |      | 0        | 0       | 0         |      0
+ f7995b02-f943-4148-8f22-ae33a1e66d95 | fixture | failed    | 2026-10-27 14:02:04.832813+01 | 00:00:00.007346 |      |          |         |           |      1
+ 41e9c2a2-7ee6-49f2-8ceb-0b103d7d2c0e | fixture | partial   | 2026-10-27 14:02:04.431671+01 | 00:00:00.045836 | 15   | 0        | 0       | 10        |      1
+ 81676364-8c4d-4fd8-b7d4-a07d014b878a | fixture | partial   | 2026-10-27 14:02:03.99197+01  | 00:00:00.054006 | 15   | 10       | 0       | 0         |      1
+(5 rows)
+

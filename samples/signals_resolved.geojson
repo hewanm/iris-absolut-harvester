@@ -1,0 +1,151 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.9603,
+          50.9375
+        ]
+      },
+      "properties": {
+        "source_record_id": "https://www.absolut-report.example/?p=900101",
+        "title": "Pensionskasse in Köln erhöht Immobilienquote auf 20 Prozent",
+        "published_at": "2026-10-26T08:15:00+00:00",
+        "location": "Köln",
+        "geo_method": "place_name",
+        "epsg25832_x": 356689.07,
+        "epsg25832_y": 5644855.73,
+        "topics": [
+          "institutional_investors",
+          "allocation_trend",
+          "regulation_quotas",
+          "real_assets"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.6821,
+          50.1109
+        ]
+      },
+      "properties": {
+        "source_record_id": "https://www.absolut-report.example/?p=900107",
+        "title": "Frankfurter Zusatzversorgungskasse schichtet in Private Equity um",
+        "published_at": "2026-10-21T16:45:00+00:00",
+        "location": "Frankfurt am Main",
+        "geo_method": "place_name",
+        "epsg25832_x": 477269.51,
+        "epsg25832_y": 5551009.57,
+        "topics": [
+          "institutional_investors",
+          "allocation_trend",
+          "real_assets"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.4653,
+          51.5136
+        ]
+      },
+      "properties": {
+        "source_record_id": "https://www.absolut-report.example/?p=900108",
+        "title": "Kirchliche Investoren erhöhen Quote für erneuerbare Energien",
+        "published_at": null,
+        "location": "Dortmund",
+        "geo_method": "place_name",
+        "epsg25832_x": 393506.84,
+        "epsg25832_y": 5708058.19,
+        "topics": [
+          "institutional_investors",
+          "regulation_quotas",
+          "real_assets"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.405,
+          52.52
+        ]
+      },
+      "properties": {
+        "source_record_id": "https://www.absolut-report.example/2026/10/stiftungen-berlin-sachwerte/",
+        "title": "Stiftungen in Berlin setzen auf Sachwerte",
+        "published_at": "2026-10-20T11:00:00+00:00",
+        "location": "Berlin",
+        "geo_method": "place_name",
+        "epsg25832_x": 798812.8,
+        "epsg25832_y": 5827999.9,
+        "topics": [
+          "institutional_investors",
+          "allocation_trend",
+          "real_assets"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.1829,
+          48.7758
+        ]
+      },
+      "properties": {
+        "source_record_id": "https://www.absolut-report.example/?p=900110",
+        "title": "Zahnärzteversorgung aus Stuttgart baut Infrastruktur-Portfolio aus",
+        "published_at": "2026-10-16T08:00:00+00:00",
+        "location": "Stuttgart",
+        "geo_method": "place_name",
+        "epsg25832_x": 513437.71,
+        "epsg25832_y": 5402549.15,
+        "topics": [
+          "institutional_investors",
+          "allocation_trend",
+          "regulation_quotas",
+          "real_assets"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.5506,
+          52.3471
+        ]
+      },
+      "properties": {
+        "source_record_id": "https://www.absolut-report.example/?p=900111",
+        "title": "Frankfurt (Oder): Kommunale Pensionskasse prüft Windpark-Beteiligung",
+        "published_at": "2026-10-15T13:20:00+00:00",
+        "location": "Frankfurt (Oder)",
+        "geo_method": "place_name",
+        "epsg25832_x": 877947.21,
+        "epsg25832_y": 5814158.87,
+        "topics": [
+          "institutional_investors",
+          "regulation_quotas",
+          "real_assets"
+        ]
+      }
+    }
+  ]
+}

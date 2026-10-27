@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SYNTHETIC TEST FIXTURE: syntactically valid RSS 2.0 channel without items. -->
+<rss version="2.0">
+<channel>
+  <title>SYNTHETIC FIXTURE – empty channel</title>
+  <link>https://www.absolut-report.example</link>
+  <description>No items</description>
+  <language>de-DE</language>
+</channel>
+</rss>

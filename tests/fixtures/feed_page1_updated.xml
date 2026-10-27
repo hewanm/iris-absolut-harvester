@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SYNTHETIC TEST FIXTURE (UPDATED COPY of feed_page1.xml: item 900101 corrected 18 -> 20 Prozent). Structure mirrors a WordPress RSS 2.0 feed (/feed/).
+  All institutions, figures and articles are fictional; no Absolut|report content is reproduced.
+  Edge cases covered: resolved city, adjective place form, ambiguous cities, state-only location,
+  out-of-scope geography (CH), off-topic item, missing pubDate, missing guid, missing title+link,
+  duplicate guid within one page, English-language item.
+-->
+<rss version="2.0"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>SYNTHETIC FIXTURE – absolut|report (test)</title>
+  <atom:link href="https://www.absolut-report.example/feed/" rel="self" type="application/rss+xml"/>
+  <link>https://www.absolut-report.example</link>
+  <description>Fictional items for automated tests</description>
+  <language>de-DE</language>
+  <lastBuildDate>Mon, 26 Oct 2026 09:00:00 +0000</lastBuildDate>
+
+  <item>
+    <title>Pensionskasse in Köln erhöht Immobilienquote auf 20 Prozent</title>
+    <link>https://www.absolut-report.example/2026/10/pensionskasse-koeln-immobilienquote/?utm_source=rss&amp;utm_medium=rss</link>
+    <dc:creator><![CDATA[Redaktion Test]]></dc:creator>
+    <pubDate>Mon, 26 Oct 2026 08:15:00 +0000</pubDate>
+    <category><![CDATA[Immobilien]]></category>
+    <category><![CDATA[Asset Allocation]]></category>
+    <guid isPermaLink="false">https://www.absolut-report.example/?p=900101</guid>
+    <description><![CDATA[<p>Die fiktive Pensionskasse Rheinland Muster hebt ihre Immobilienquote im Rahmen der Anlageverordnung auf 20 Prozent an (korrigierte Meldung) und stockt ihre Spezialfonds-Mandate für Wohnimmobilien auf. [&#8230;]</p>]]></description>
+  </item>
+
+  <item>
+    <title>Versicherer prüfen Solvency-II-Entlastung für Infrastruktur</title>
+    <link>https://www.absolut-report.example/2026/10/versicherer-solvency-ii-infrastruktur/</link>
+    <dc:creator><![CDATA[Redaktion Test]]></dc:creator>
+    <pubDate>Sun, 25 Oct 2026 14:30:00 +0000</pubDate>
+    <category><![CDATA[Regulierung]]></category>
+    <guid isPermaLink="false">https://www.absolut-report.example/?p=900102</guid>
+    <description><![CDATA[Deutsche Lebensversicherer sehen in niedrigeren SCR-Anforderungen für qualifizierte Infrastrukturinvestments Spielraum für eine höhere Allokation. Die BaFin hat noch keine Stellungnahme veröffentlicht.]]></description>
+  </item>
+
+  <item>
+    <title>Versorgungswerk aus Münster und Stiftung aus Hamburg starten Private-Debt-Mandat</title>
+    <link>https://www.absolut-report.example/2026/10/versorgungswerk-stiftung-private-debt/</link>
+    <pubDate>Sat, 24 Oct 2026 10:00:00 +0000</pubDate>
+    <category><![CDATA[Private Markets]]></category>
+    <guid isPermaLink="false">https://www.absolut-report.example/?p=900103</guid>
+    <description><![CDATA[Zwei fiktive institutionelle Investoren vergeben gemeinsam ein Mandat über 150 Mio. Euro für europäische Private-Debt-Strategien.]]></description>
+  </item>
+
+  <item>
+    <title>Schweizer Pensionskassen erhöhen Hypothekenanteil</title>
+    <link>https://www.absolut-report.example/2026/10/schweizer-pensionskassen-hypotheken/</link>
+    <pubDate>Fri, 23 Oct 2026 09:00:00 +0000</pubDate>
+    <guid isPermaLink="false">https://www.absolut-report.example/?p=900104</guid>
+    <description><![CDATA[Schweizer Vorsorgeeinrichtungen bauen ihre Immobilien- und Hypothekenquote aus; die FINMA beobachtet die Entwicklung.]]></description>
+  </item>
+
+  <item>
+    <title>Marktkommentar: Volatilität an den Aktienmärkten bleibt hoch</title>
+    <link>https://www.absolut-report.example/2026/10/marktkommentar-volatilitaet/</link>
+    <pubDate>Fri, 23 Oct 2026 07:00:00 +0000</pubDate>
+    <guid isPermaLink="false">https://www.absolut-report.example/?p=900105</guid>
+    <description><![CDATA[Analysten erwarten ein schwankungsreiches Quartal an den Börsen.]]></description>
+  </item>
+
+  <item>
+    <title>Bayerische Sparkassen bündeln Infrastruktur-Spezialfonds</title>
+    <link>https://www.absolut-report.example/2026/10/sparkassen-infrastruktur-spezialfonds/</link>
+    <pubDate>Thu, 22 Oct 2026 12:00:00 +0000</pubDate>
+    <guid isPermaLink="false">https://www.absolut-report.example/?p=900106</guid>
+    <description><![CDATA[Mehrere Institute legen einen gemeinsamen Masterfonds für Infrastruktur und erneuerbare Energien auf.]]></description>
+  </item>
+
+  <item>
+    <title>Frankfurter Zusatzversorgungskasse schichtet in Private Equity um</title>
+    <link>https://www.absolut-report.example/2026/10/zusatzversorgungskasse-private-equity/</link>
+    <pubDate>Wed, 21 Oct 2026 16:45:00 +0000</pubDate>
+    <guid isPermaLink="false">https://www.absolut-report.example/?p=900107</guid>
+    <description><![CDATA[Die fiktive Kasse reduziert Staatsanleihen und erhöht die Private-Equity-Allokation auf acht Prozent.]]></description>
+  </item>
+
+  <item>
+    <title>Kirchliche Investoren erhöhen Quote für erneuerbare Energien</title>
+    <link>https://www.absolut-report.example/2026/10/kirchliche-investoren-erneuerbare/</link>
+    <guid isPermaLink="false">https://www.absolut-report.example/?p=900108</guid>
+    <description><![CDATA[Eine fiktive kirchliche Versorgungseinrichtung mit Sitz in Dortmund investiert in Windparks und Solarparks.]]></description>
+  </item>
+
+  <item>
+    <title>Stiftungen in Berlin setzen auf Sachwerte</title>
+    <link>https://www.absolut-report.example/2026/10/stiftungen-berlin-sachwerte/</link>
+    <pubDate>Tue, 20 Oct 2026 11:00:00 +0000</pubDate>
+    <description><![CDATA[Berliner Stiftungen erhöhen den Anteil von Immobilien und Infrastruktur in der Kapitalanlage.]]></description>
+  </item>
+
+  <item>
+    <description><![CDATA[Eintrag ohne Titel und ohne Link (defekter Feed-Eintrag).]]></description>
+    <pubDate>Tue, 20 Oct 2026 10:00:00 +0000</pubDate>
+  </item>
+
+  <item>
+    <title>Pensionskasse in Köln erhöht Immobilienquote auf 18 Prozent</title>
+    <link>https://www.absolut-report.example/2026/10/pensionskasse-koeln-immobilienquote/</link>
+    <pubDate>Mon, 26 Oct 2026 08:15:00 +0000</pubDate>
+    <guid isPermaLink="false">https://www.absolut-report.example/?p=900101</guid>
+    <description><![CDATA[<p>Die fiktive Pensionskasse Rheinland Muster hebt ihre Immobilienquote im Rahmen der Anlageverordnung auf 18 Prozent an und stockt ihre Spezialfonds-Mandate für Wohnimmobilien auf. [&#8230;]</p>]]></description>
+  </item>
+
+  <item>
+    <title>German insurers lift real estate allocations under Solvency II</title>
+    <link>https://www.absolut-report.example/2026/10/german-insurers-real-estate/</link>
+    <pubDate>Mon, 19 Oct 2026 09:30:00 +0000</pubDate>
+    <guid isPermaLink="false">https://www.absolut-report.example/?p=900112</guid>
+    <description><![CDATA[A fictional survey finds that institutional investors in Germany plan to raise real estate and infrastructure quotas.]]></description>
+  </item>
+</channel>
+</rss>

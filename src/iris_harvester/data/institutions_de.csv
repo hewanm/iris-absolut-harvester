@@ -1,0 +1,20 @@
+pattern,hq_city,note
+Bayerische Versorgungskammer,München,
+Ärzteversorgung Westfalen-Lippe,Münster,
+Nordrheinische Ärzteversorgung,Düsseldorf,
+Versorgungsanstalt des Bundes und der Länder,Karlsruhe,
+VBL,Karlsruhe,acronym; exact-case match only
+Kirchliche Zusatzversorgungskasse Rheinland-Westfalen,Dortmund,
+KZVK,Dortmund,acronym; exact-case match only
+BVV Versorgungskassen,Berlin,
+Allianz,München,group HQ
+Munich Re,München,
+Talanx,Hannover,
+Hannover Rück,Hannover,
+R+V Versicherung,Wiesbaden,
+Debeka,Koblenz,
+HUK-Coburg,Coburg,
+Gothaer,Köln,
+Generali Deutschland,München,
+Ergo Group,Düsseldorf,
+Helaba,Frankfurt am Main,

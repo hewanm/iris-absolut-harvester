@@ -1,0 +1,58 @@
+{
+  "run_id": "df4697ad-d375-487a-9266-f4551d7162e3",
+  "mode": "fixture",
+  "status": "partial",
+  "source_system": "absolut_report",
+  "feed_url": "fixture://feed_page1_updated.xml,feed_page2.xml",
+  "started_at": "2026-10-27T13:02:05.607859+00:00",
+  "finished_at": "2026-10-27T13:02:05.650963+00:00",
+  "stats": {
+    "duplicates_in_batch": 2,
+    "entries_seen": 15,
+    "filtered_out": 2,
+    "filtered_out:no_objective_topic": 1,
+    "filtered_out:out_of_scope_geo:CH": 1,
+    "flag:ambiguous_location": 1,
+    "flag:guid_missing_used_url": 1,
+    "flag:location_assumption": 1,
+    "flag:missing_pubdate": 1,
+    "flag:region_only": 1,
+    "geo:ambiguous": 1,
+    "geo:not_found": 2,
+    "geo:region_only": 1,
+    "geo:resolved": 6,
+    "inserted": 0,
+    "rejected": 1,
+    "staged_records": 10,
+    "unchanged": 9,
+    "updated": 1
+  },
+  "pages": [
+    {
+      "page": 1,
+      "url": "fixture://feed_page1_updated.xml",
+      "status": "ok",
+      "entries": 12,
+      "format": "rss20",
+      "bozo": false
+    },
+    {
+      "page": 2,
+      "url": "fixture://feed_page2.xml",
+      "status": "ok",
+      "entries": 3,
+      "format": "rss20",
+      "bozo": false
+    }
+  ],
+  "errors": [],
+  "rejected": [
+    {
+      "reason": "missing_title",
+      "page": "fixture://feed_page1_updated.xml",
+      "guid": null,
+      "link": null,
+      "title": null
+    }
+  ]
+}

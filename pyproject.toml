@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "iris-absolut-harvester"
+version = "0.1.0"
+description = "IRIS-SIG-49: Absolut|report institutional asset allocation signal harvester (RSS/Atom -> PostGIS staging)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "feedparser>=6.0.11",
+    "requests>=2.32",
+    "psycopg[binary]>=3.2",
+    "pyproj>=3.6",
+    "pydantic>=2.7",
+    "PyYAML>=6.0",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "responses>=0.25"]
+
+[project.scripts]
+iris-harvester = "iris_harvester.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+iris_harvester = ["data/*.yaml", "data/*.csv", "sql/*.sql"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["db: integration tests that need a PostGIS database (TEST_DATABASE_URL)"]
+filterwarnings = ["ignore:To avoid breaking existing software:DeprecationWarning:feedparser"]
