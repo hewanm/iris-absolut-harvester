@@ -69,9 +69,14 @@ allowed geographic scope, no orphaned rows without a run.
    "point ⇔ resolved". Tests prove the database rejects a Paris point, lon/lat values mistaken for metres,
    a point in SRID 4326, and a point attached to an `ambiguous` row.
 
+## Source verification
+
+* **Live endpoint (verified 28 Oct 2026):** `https://www.absolut-report.de/feed/` returns **HTTP 404**
+  (robots.txt allows access). The domain permanently redirects to `absolut-research.de` (TYPO3), which
+  publishes no RSS/Atom feed. Documented in README §2 and not bypassed. The pipeline is demonstrated with
+  synthetic fixtures, as the brief allows.
+
 ## Not verified here
 
-* **Live endpoint:** from the build environment `https://www.absolut-report.de/feed/` returned an HTTP 4xx
-  client error; whether that is bot protection or a removed feed could not be determined. See README §2.
-* **Docker:** `docker compose config` validates, but no Docker daemon was available to run the stack; the
-  database tests ran against a native PostgreSQL 16.15 / PostGIS 3.4.2 instead.
+* **Docker:** `docker compose config` validates, but no Docker daemon was available in the build
+  environment. The database tests ran against a native PostgreSQL 16.15 / PostGIS 3.4.2 instead.

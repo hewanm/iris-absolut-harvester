@@ -27,27 +27,32 @@ Requirements: Python ≥ 3.11, and either Docker (for PostGIS) or a local Postgr
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
-cp .env.example .env            # set POSTGRES_PASSWORD etc.; .env is git-ignored
+cp .env.example .env            # set POSTGRES_PASSWORD etc. - .env is git-ignored
 
-# a) no database at all – full pipeline, writes JSONL/CSV/GeoJSON + run report
+# Option A: no database at all - full pipeline, writes JSONL/CSV/GeoJSON and a run report
 iris-harvester run --dry-run \
   --fixture tests/fixtures/feed_page1.xml --fixture tests/fixtures/feed_page2.xml \
   --export-dir out
 
-# b) with PostGIS
+# Option B: with PostGIS
 docker compose up -d db
 set -a; . ./.env; set +a
 iris-harvester init-db
 iris-harvester run --fixture tests/fixtures/feed_page1.xml --fixture tests/fixtures/feed_page2.xml
-iris-harvester run --fixture tests/fixtures/feed_page1.xml --fixture tests/fixtures/feed_page2.xml   # 0 inserted, 10 unchanged
+iris-harvester run --fixture tests/fixtures/feed_page1.xml --fixture tests/fixtures/feed_page2.xml   # 0 inserted - 10 unchanged
 psql "$DATABASE_URL" -f sql/validation.sql
 
-# c) live source (honours robots.txt; reports, never bypasses, access restrictions)
+# Option C: live source - honours robots.txt, reports access restrictions, never bypasses them
 iris-harvester check-source       # read-only verification of the endpoint
 iris-harvester run                # live harvest into the database
 ```
 
 `make install | db | test | test-db | demo | validate | check-source` wraps the same commands.
+
+> **macOS note:** with Python ≥ 3.13, `.pth` files that macOS marks as hidden (common inside
+> iCloud-synced folders such as `~/Documents`) are ignored, so an editable install can fail with
+> `ModuleNotFoundError: iris_harvester`. Use a regular install instead: `pip install ".[dev]"`.
+
 A containerised run is available with `docker compose --profile app up harvester`.
 
 **Exit codes:** `0` succeeded / not modified · `4` partial (some entries rejected or a later page failed) ·
@@ -60,26 +65,50 @@ A containerised run is available with `docker compose --profile app up harvester
 | Publisher | Absolut Research GmbH, *Absolut\|report* (trade publication for institutional asset management, DACH) |
 | Endpoint in brief | `https://www.absolut-report.de/feed/` |
 | Pattern | A – RSS/Atom; the `/feed/` path and `?paged=N` pagination are WordPress conventions |
-| Verified from build environment (27 Oct 2026) | **HTTP 4xx client error** for automated access. Not established whether this is bot protection or a removed feed. |
+| **Verified status (28 Oct 2026)** | **Feed obsolete.** See evidence below. |
 
-In line with the brief, the implementation is therefore **fixture-based and fully tested**, and the live path
-is implemented but treats any refusal as a reported failure (`access_restricted`, exit 2) – no header
-spoofing, proxies, mirrors or scraping of HTML pages.
-
-**Before relying on the live path, run `iris-harvester check-source`** from a normal network. It prints
-robots.txt permission, HTTP status, content type, feed format, entry count and the newest/oldest
-publication dates, and writes nothing. Paste its output here:
+**Evidence (verified 28 Oct 2026 from a residential connection in Germany):**
 
 ```
-<check-source output, date>
+$ iris-harvester check-source
+{
+  "feed_url": "https://www.absolut-report.de/feed/",
+  "robots_allows": true,
+  "http_status": 404,
+  "content_type": null
+}
+
+$ curl -sI https://www.absolut-report.de/
+HTTP/2 301
+location: https://www.absolut-research.de/publikationen/absolutreport/ausgaben/
+server: Apache
 ```
 
-Justified alternatives if the feed is not accessible: (1) ask the publisher for feed/API access or a
-licensed data delivery – the code only needs `IRIS_FEED_URL` changed; (2) Absolut Research category feeds,
-if offered, can be configured the same way; (3) any other RSS/Atom source with the same domain focus works
-unchanged, since nothing in the pipeline is publisher-specific except `IRIS_SOURCE_SYSTEM` and the taxonomy.
+* robots.txt permits access, but `/feed/` returns **404**: the endpoint no longer exists.
+* The whole `absolut-report.de` domain now **permanently redirects (301)** to the publisher site
+  `absolut-research.de` (TYPO3 CMS, no longer WordPress).
+* Neither the old homepage, the issue archive (`/publikationen/absolutreport/ausgaben/`) nor the
+  news page (`/news/`) advertises an RSS/Atom feed (`<link rel="alternate">`). The news page is HTML with
+  dated teasers, partly marked "Plus" behind a login, under Absolut Research copyright.
 
-**Content rights:** only metadata and the excerpt the publisher itself puts in the feed are stored
+**Consequence.** As the brief requires, the access limitation is documented and **not bypassed**: the
+implementation is fixture-based and fully tested, and the live path stays implemented for RSS/Atom.
+Run against the obsolete URL it fails visibly (`feed_not_found`, exit 1). An HTML scraper for the news page was
+deliberately **not** built: there is no feed, part of the content is login-gated, and the terms of use for
+automated extraction have not been confirmed.
+
+**Justified alternatives, in order of preference:**
+1. **Licensed access from the publisher.** Ask Absolut Research GmbH for an RSS/Atom/API endpoint or data
+   delivery for the news stream. If it is RSS/Atom, only `IRIS_FEED_URL` changes.
+2. **HTML news adapter, only with permission.** If the publisher's terms allow it, a small adapter for
+   `https://www.absolut-research.de/news/` (date, title, teaser, URL, no "Plus" content) can feed the same
+   `normalize → geocode → classify → load` pipeline. Only the fetch/parse step is source-specific.
+3. **Other RSS/Atom sources with the same focus.** Any feed is supported unchanged
+   (`IRIS_FEED_URL`, `IRIS_SOURCE_SYSTEM`).
+
+`iris-harvester check-source` repeats the verification at any time (read-only, honours robots.txt).
+
+**Content rights:** only metadata and the excerpt the publisher itself puts in a feed are stored
 (`summary`, truncated to 2 000 characters). Article pages are never fetched.
 
 ## 3. Configuration
@@ -236,7 +265,7 @@ check passes). A concise error/quality summary is in **[QUALITY_REPORT.md](QUALI
   are missed (by design, for content-rights reasons).
 * Extracting numeric quotas (e.g. "Immobilienquote 18 %") into structured columns is a natural next step.
 * Scheduling (cron / Airflow) and alerting on exit codes are left to the platform.
-* Live endpoint not verified from the build environment (see §2).
+* The brief's feed endpoint is obsolete (404, domain moved, no replacement feed). See §2.
 
 ---
 Submitted for evaluation of assignment IRIS-SIG-49 only; no licence for production use is granted by
