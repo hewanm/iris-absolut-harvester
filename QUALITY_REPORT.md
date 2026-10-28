@@ -73,7 +73,7 @@ allowed geographic scope, no orphaned rows without a run.
 
 * **Live endpoint (verified 28 Oct 2026):** `https://www.absolut-report.de/feed/` returns **HTTP 404**
   (robots.txt allows access). The domain permanently redirects to `absolut-research.de` (TYPO3), which
-  publishes no RSS/Atom feed. Documented in README §2 and not bypassed. The pipeline is demonstrated with
+  publishes no RSS/Atom feed. Documented in docs/DESIGN.md §2 and not bypassed. The pipeline is demonstrated with
   synthetic fixtures, as the brief allows.
 
 ## Local verification on a developer machine (28 Oct 2026)
