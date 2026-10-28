@@ -221,7 +221,7 @@ Breisgau (flag `location_assumption`, lower confidence). Cities whose names are 
 
 ```bash
 pytest -q                                            # 60 tests, DB tests skipped
-TEST_DATABASE_URL=postgresql://iris:…@localhost:5432/iris pytest -q   # all 70 tests
+TEST_DATABASE_URL=postgresql://iris:…@localhost:5432/iris_test pytest -q   # all 70 tests
 ```
 
 * `test_parse_normalize.py` – RSS & Atom, UTC conversion, empty/HTML/truncated payloads, canonical URLs,
@@ -231,6 +231,9 @@ TEST_DATABASE_URL=postgresql://iris:…@localhost:5432/iris pytest -q   # all 70
   projection accuracy.
 * `test_fetch_pipeline.py` – HTTP mocked with `responses`: robots.txt, refusals, retries, conditional
   requests, pagination to 404, loop protection, max pages, partial failure, obsolete endpoint.
+The database tests drop and recreate `iris_staging`, so they run in a separate database (`iris_test`,
+created automatically on first use) and refuse to run against `DATABASE_URL`.
+
 * `test_db_integration.py` – against real PostGIS: **re-run inserts nothing**, changed record updated in
   place, SRID/validity and round-trip accuracy, database rejects bad coordinates / wrong SRID / point
   without resolved status, run log, advisory lock, live incremental run with ETag → 304.

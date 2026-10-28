@@ -76,7 +76,10 @@ allowed geographic scope, no orphaned rows without a run.
   publishes no RSS/Atom feed. Documented in README §2 and not bypassed. The pipeline is demonstrated with
   synthetic fixtures, as the brief allows.
 
-## Not verified here
+## Local verification on a developer machine (28 Oct 2026)
 
-* **Docker:** `docker compose config` validates, but no Docker daemon was available in the build
-  environment. The database tests ran against a native PostgreSQL 16.15 / PostGIS 3.4.2 instead.
+macOS (Apple Silicon), Python 3.15.2, Docker 20.10.21, `postgis/postgis:16-3.4` via `docker compose`:
+`pytest` reports **70 passed**, and two consecutive fixture runs give `inserted: 0, unchanged: 10` on the
+second run. The first run in that session showed 7 inserted / 1 updated / 2 unchanged, because the test
+suite had shared the working database and left rows behind. Since then the tests use a separate,
+auto-created `iris_test` database and refuse to run against `DATABASE_URL`.

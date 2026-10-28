@@ -1,6 +1,7 @@
 """Integration tests against a real PostgreSQL 16 / PostGIS 3.4 database.
 
-Run with:  TEST_DATABASE_URL=postgresql://iris:iris@localhost:5432/iris pytest -m db
+Run with:  TEST_DATABASE_URL=postgresql://iris:<password>@localhost:5432/iris_test pytest -m db
+(the database is created automatically; it must differ from DATABASE_URL)
 Skipped automatically when TEST_DATABASE_URL is not set.
 """
 import uuid
